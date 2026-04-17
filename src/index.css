@@ -1,0 +1,204 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inika:wght@400;700&family=Poppins:wght@400;500;600;700&family=League+Spartan:wght@400;700&family=Baloo+Thambi+2:wght@400;500;600;700&family=Akshar:wght@400;500;600;700&display=swap');
+
+:root {
+  --primary-color: #00c49a;
+  --primary-dark: #2b5329;
+  --text-dark: #000000;
+  --text-gray: #888888;
+  --bg-color: #ffffff;
+  
+  --font-serif: 'Lora', serif;
+  --font-sans: 'Inter', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-sans);
+}
+
+body {
+  background-color: #1a1a1a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  overflow: hidden; /* Prevent scrolling of the whole page */
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.phone-wrapper {
+  /* Scale the phone to always fit inside the viewport */
+  transform: scale(calc(min(90vh / 874, 95vw / 402, 1)));
+  transform-origin: center center;
+  position: relative;
+  
+  /* Exactly matches the inner screen plus border */
+  box-sizing: content-box;
+  width: 402px; 
+  height: 874px; 
+  
+  /* Realistic iPhone Pro Bezel */
+  border: 12px solid #111;
+  border-radius: 55px;
+  box-shadow: 
+    0 0 0 2px #444, /* Metallic rim */
+    0 24px 60px rgba(0,0,0,0.6), /* Drop shadow */
+    inset 0 0 0 6px #000; /* Inner black border */
+  background-color: #000;
+  
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+/* Side buttons for realism */
+.phone-wrapper::before,
+.phone-wrapper::after {
+  content: '';
+  position: absolute;
+  background: #444;
+  width: 4px;
+}
+
+/* Power button */
+.phone-wrapper::before {
+  right: -16px;
+  top: 240px;
+  height: 64px;
+  border-radius: 0 4px 4px 0;
+}
+
+/* Action and Volume buttons */
+.phone-wrapper::after {
+  left: -16px;
+  top: 150px;
+  height: 32px; /* Action button */
+  border-radius: 4px 0 0 4px;
+  box-shadow: 0 60px 0 0 #444, 0 130px 0 0 #444; /* Vol up, Vol down */
+}
+
+.phone-screen {
+  width: 402px; 
+  height: 874px; 
+  background-color: var(--bg-color);
+  position: relative;
+  overflow: hidden; 
+  border-radius: 43px; /* Inner radius */
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Dynamic Island */
+.dynamic-island {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 124px;
+  height: 36px;
+  background-color: #000;
+  border-radius: 18px;
+  z-index: 99999; /* Ensure it stays on top */
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 12px;
+}
+
+.camera-lens {
+  width: 12px;
+  height: 12px;
+  background-color: #1a1a1a;
+  border-radius: 50%;
+  box-shadow: inset 0 0 4px rgba(255,255,255,0.1);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  color: var(--text-dark);
+}
+
+/* Force all generated Figma screens to position at 0,0 inside the phone */
+.motion-wrapper > div > * {
+  position: absolute !important;
+  left: 0 !important;
+  top: 0 !important;
+  margin: 0 !important;
+  transform-origin: top left !important;
+}
+
+/* Auto-scale 440px screens to fit 402px */
+.motion-wrapper > div > [style*="width: 440px"],
+.motion-wrapper > div > [style*="width:440px"] {
+  transform: scale(0.913636, 0.914226) !important; /* 402/440, 874/956 */
+}
+
+/* Auto-scale 430px screens to fit 402px */
+.motion-wrapper > div > [style*="width: 430px"],
+.motion-wrapper > div > [style*="width:430px"] {
+  transform: scale(0.934883, 0.937768) !important; /* 402/430, 874/932 */
+}
+
+.screen-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  padding: 24px;
+}
+
+.full-center {
+  justify-content: center;
+  align-items: center;
+}
+
+.btn {
+  padding: 14px 24px;
+  border-radius: 8px;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.1s;
+  text-align: center;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.btn-dark {
+  background-color: var(--primary-dark);
+  color: white;
+}
+
+/* Utilities */
+.text-center { text-align: center; }
+.mt-4 { margin-top: 1rem; }
+.mb-4 { margin-bottom: 1rem; }
+.mt-8 { margin-top: 2rem; }
+.text-gray { color: var(--text-gray); }
+
+/* Hide scrollbar for clean app look */
+::-webkit-scrollbar {
+  display: none;
+}
